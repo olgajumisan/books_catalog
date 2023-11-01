@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import '../bookslist/books_list_widget.dart';
 
 class MainScreenWidget extends StatefulWidget {
   const MainScreenWidget({super.key});
@@ -14,7 +13,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
 
   final List<Widget> _listWidgets = [
     Text('Домой'),
-    Text('Каталог'),
+    BooksListwidget(),
     Text('Избранное'),
   ];
 
@@ -33,19 +32,9 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
         centerTitle: true,
         title: Text('Main Screen'),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            _listWidgets[_selectedTab],
-            ElevatedButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              child: Text('На страницу авторизации'),
-            ),
-          ],
-        ),
+      body: IndexedStack(
+        index: _selectedTab,
+        children: _listWidgets,
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedTab,

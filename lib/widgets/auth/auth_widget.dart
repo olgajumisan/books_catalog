@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:spider/spider.dart';
 import '../main_screen/main_screen_widget.dart';
 
 class AuthWidget extends StatefulWidget {
