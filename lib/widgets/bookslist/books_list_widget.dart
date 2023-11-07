@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import '../../resources/resources.dart';
 
 class BookItem {
+  final int id;
   final String imageName;
   final String title;
   final String author;
   final String description;
 
   BookItem(
-      {required this.imageName,
+      {required this.id,
+      required this.imageName,
       required this.title,
       required this.author,
       required this.description});
@@ -24,6 +26,7 @@ class BooksListwidget extends StatefulWidget {
 class _BooksListwidgetState extends State<BooksListwidget> {
   final _booksList = [
     BookItem(
+      id: 1,
       imageName: Images.bookCover,
       title: 'Магический поединок',
       author: 'Брэд Карстен',
@@ -31,6 +34,7 @@ class _BooksListwidgetState extends State<BooksListwidget> {
           'Есть произведения, которые можно читать и перечитывать много раз. Книга Антуана де Сент-Экзюпери «Маленький принц» одна из таких. С момента первого издания в 1943 году она входит в число самых читаемых в мире. Ее автор, французский летчик и писатель, взрослый, так и оставшийся в душе ребенком. Книга «Маленький принц» рассказывает о необыкновенной встрече пилота (из-за неполадок в моторе летчику пришлось посадить самолет в пустыне) с Маленьким принцем, гостем с другой планеты.',
     ),
     BookItem(
+      id: 2,
       imageName: Images.duna,
       title: 'Дюна',
       author: 'Фрэнк Герберт',
@@ -38,12 +42,14 @@ class _BooksListwidgetState extends State<BooksListwidget> {
           'Фрэнк Герберт успел написать много, но в истории остался прежде всего как автор эпопеи "Дюна". Возможно, самой прославленной фантастической саги двадцатого столетия, саги, переведенной на десятки языков и завоевавшей по всему миру миллионы поклонников.',
     ),
     BookItem(
+        id: 3,
         imageName: Images.frai,
         title: 'Наваждения',
         author: 'Макс Фрай',
         description:
             '«Наваждения» — пятый том фэнтези-сериала Лабиринты Ехо Макса Фрая. Книга содержит две повести, повествующие о приключениях сэра Макса в мире Ехо'),
     BookItem(
+      id: 4,
       imageName: Images.sun,
       title: 'Успеть до захода солнца',
       author: 'Нора Робертс',
@@ -51,6 +57,7 @@ class _BooksListwidgetState extends State<BooksListwidget> {
           'На курорте в Западной Монтане найдено тело молодой женщины. Для Бодин убийство становится шокирующим напоминанием о старой потере. Двадцать пять лет назад ее тетя Элис бесследно исчезла, и теперь Бодин связывает новую трагедию с событиями прошлого.',
     ),
     BookItem(
+      id: 5,
       imageName: Images.duna,
       title: 'Дюна',
       author: 'Фрэнк Герберт',
@@ -58,12 +65,14 @@ class _BooksListwidgetState extends State<BooksListwidget> {
           'Фрэнк Герберт успел написать много, но в истории остался прежде всего как автор эпопеи "Дюна". Возможно, самой прославленной фантастической саги двадцатого столетия, саги, переведенной на десятки языков и завоевавшей по всему миру миллионы поклонников.',
     ),
     BookItem(
+        id: 6,
         imageName: Images.tuman,
         title: 'Туман в лесах Барнаула',
         author: 'Дмитрий Петров',
         description:
             'Мирон Ушаков - черный копатель. Однажды Мирон отправляется в таинственное место под названием Чертово городище, чтобы раздобыть клад Кудеяра-разбойника. Однако все очень скоро начинает идти не по плану, и Мирон становится заложником страшного сказочного места, где у времени свои правила.'),
     BookItem(
+        id: 7,
         imageName: Images.molot,
         title: 'Молот ведьм',
         author: 'Шпренгер, Инститорис',
@@ -87,6 +96,11 @@ class _BooksListwidgetState extends State<BooksListwidget> {
     }
 
     setState(() {});
+  }
+
+  void _onBookTap(int index) {
+    final id = _booksList[index].id;
+    Navigator.of(context).pushNamed('/main_screen/books_detail', arguments: id);
   }
 
   @override
@@ -169,7 +183,7 @@ class _BooksListwidgetState extends State<BooksListwidget> {
                     color: Colors.transparent,
                     child: InkWell(
                       borderRadius: BorderRadius.all(Radius.circular(5)),
-                      onTap: () => print('tapped'),
+                      onTap: () => _onBookTap(index),
                       splashColor: Colors.black26,
                     ),
                   ),

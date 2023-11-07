@@ -30,7 +30,7 @@ class MainScreenWidgetState extends State<MainScreenWidget> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text('Main Screen'),
+        title: Text('Каталог'),
       ),
       body: IndexedStack(
         index: _selectedTab,
